@@ -5,4 +5,5 @@ __pycache__/
 .env
 outputs/adapter/
 outputs/checkpoints/
+outputs/evaluation/
 wandb/
