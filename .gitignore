@@ -1,9 +1,6 @@
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
-.venv/
-.env
-outputs/adapter/
-outputs/checkpoints/
-outputs/evaluation/
-wandb/
+outputs/adapter/*.safetensors
+outputs/adapter/*.bin
+outputs/adapter/*.pt
