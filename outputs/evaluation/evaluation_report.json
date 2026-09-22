@@ -1,0 +1,100 @@
+{
+  "model": "Qwen/Qwen3-0.6B",
+  "method": "QLoRA 4-bit NF4 + LoRA + SFT",
+  "training": {
+    "epochs": 2,
+    "learning_rate": 0.0002,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "train_examples": 96,
+    "eval_examples": 24
+  },
+  "metrics": {
+    "eval_loss": 2.8623740673065186,
+    "rouge": {
+      "rouge1": 0.16113592317583314,
+      "rouge2": 0.030619323408513206,
+      "rougeL": 0.10970172488645366,
+      "rougeLsum": 0.12142221615733664
+    },
+    "safety_pass_rate": 1.0
+  },
+  "qualitative_examples": [
+    {
+      "prompt": "Where is my order?",
+      "response": "<think>\nOkay, the user is asking where their order is. I need to provide the necessary information. First, I should check if the order has been processed. If it's a new order, I can tell them that the order is in the system. If it's a previous one, I should mention the order number. I should also make sure to keep the response polite and concise, avoiding any technical jargon. Let me make sure I don't mention any passwords or full card numbers. Alright, that should cover it.\n</think>\n\nYour order is currently in the system. If you need further assistance, please contact us."
+    },
+    {
+      "prompt": "I received a damaged item. What are my options?",
+      "response": "<think>\nOkay, the user mentioned they received a damaged item. I need to provide them with the necessary information. First, I should confirm the item's status. If it's a product, I should mention the product number. Then, list the options: return, exchange, or refund. Also, include the contact details. Make sure to keep the response polite and concise. Avoid any technical jargon. Let me check if there's any other information they might need, like tracking. But the main points are clear.\n</think>\n\nI'll help you with the options. Please provide the product number. Options: Return, exchange, or refund. If you have the tracking number, I can assist with that. Let me know."
+    },
+    {
+      "prompt": "My refund has not arrived yet. What information do you need?",
+      "response": "<think>\nOkay, the user is reporting that their refund hasn't arrived yet. I need to ask for the necessary information to resolve this. First, I should confirm the refund details, like the date of the refund, the reason, and the amount. They might not have provided this, so I should prompt them to share that. Also, check if there's a tracking number or a way to track it. Maybe they can't access the tracking, so I should mention that. Keep the response polite and ensure they know they can contact support for further help. Avoid any technical jargon and keep it simple.\n</think>\n\nTo assist with your refund, please provide the following details:  \n1. Date of the refund.  \n2. Reason for the refund.  \n3. Amount.  \n4"
+    },
+    {
+      "prompt": "My payment failed. What should I do?",
+      "response": "<think>\nOkay, the user mentioned their payment failed. I need to provide clear, helpful steps. First, check their account details. If they're on a mobile app, confirm the payment was successful. If not, contact customer support. Also, mention to check their bank details. Keep it concise and polite, no passwords or OTPs. Make sure they know to contact support if there's a problem.\n</think>\n\nYour payment failed. Please check your account details. If the issue persists, contact customer support for assistance."
+    },
+    {
+      "prompt": "Can I exchange an item for another size?",
+      "response": "<think>\nOkay, the user is asking if they can exchange an item for another size. First, I need to check the store's policies. I remember that most e-commerce platforms have a \"size exchange\" option, but I should confirm if it's available. I should mention the process: contact customer service, provide the order number, and check the size. Also, I need to make sure the response is polite and not push for passwords. Let me make sure the answer is clear and concise.\n</think>\n\nYes, you can exchange an item for another size. Please contact our customer support, provide the order number, and we will assist you with the exchange."
+    }
+  ],
+  "base_vs_finetuned": [
+    {
+      "prompt": "Where is my order?",
+      "base": "<think>\nOkay, the user is asking where their order is. I need to respond in a friendly and helpful way. First, I should confirm that I can help with that. I can mention that I can check the order status. It's important to keep the response concise and polite. I should also make sure to ask if they need further assistance. Let me check the previous messages to make sure I'm on the same page. Alright, the response should be clear and straightforward.\n</think>\n\nI can check your order status for you. Let me know if you need further assistance!",
+      "finetuned": "<think>\nOkay, the user is asking where their order is. I need to provide the necessary information. First, I should check if the order has been processed. If it's a new order, I can tell them that the order is in the system. If it's a previous one, I should mention the order number. I should also make sure to keep the response polite and concise, avoiding any technical jargon. Let me make sure I don't mention any passwords or full card numbers. Alright, that should cover it.\n</think>\n\nYour order is currently in the system. If you need further assistance, please contact us."
+    },
+    {
+      "prompt": "I received a damaged item. What are my options?",
+      "base": "<think>\nOkay, the user mentioned they received a damaged item and wants to know the options. I need to make sure I address the common solutions for damaged products. First, I should confirm if they have the necessary documentation, like a receipt or warranty. Then, check if they can contact customer support for further assistance. It's important to mention the return policy and the possibility of a refund. I should keep the response clear and helpful, avoiding any technical jargon. Let me structure the answer in a friendly and concise manner.\n</think>\n\nYou can return the damaged item, request a refund, or contact customer support for assistance. Please provide details to proceed.",
+      "finetuned": "<think>\nOkay, the user mentioned they received a damaged item. I need to provide them with the necessary information. First, I should confirm the item's status. If it's a product, I should mention the product number. Then, list the options: return, exchange, or refund. Also, include the contact details. Make sure to keep the response polite and concise. Avoid any technical jargon. Let me check if there's any other information they might need, like tracking. But the main points are clear.\n</think>\n\nI'll help you with the options. Please provide the product number. Options: Return, exchange, or refund. If you have the tracking number, I can assist with that. Let me know."
+    },
+    {
+      "prompt": "My refund has not arrived yet. What information do you need?",
+      "base": "<think>\nOkay, the user mentioned their refund hasn't arrived yet and wants to know what information they need. I need to respond politely and provide the necessary details. First, I should confirm the refund status and ask for the reason. Then, I should list the steps they can take, like contacting customer support or checking the refund portal. It's important to keep the response clear and helpful, avoiding any technical jargon. Let me make sure the information is concise and addresses the user's needs effectively.\n</think>\n\nI can assist you with the refund. Please provide the reason for the refund, and I will confirm the status. You can also contact our customer support for further assistance.",
+      "finetuned": "<think>\nOkay, the user is reporting that their refund hasn't arrived yet. I need to ask for the necessary information to resolve this. First, I should confirm the refund details, like the date of the refund, the reason, and the amount. They might not have provided this, so I should prompt them to share that. Also, check if there's a tracking number or a way to track it. Maybe they can't access the tracking, so I should mention that. Keep the response polite and ensure they know they can contact support for further help. Avoid any technical jargon and keep it simple.\n</think>\n\nTo assist with your refund, please provide the following details:  \n1. Date of the refund.  \n2. Reason for the refund.  \n3. Amount.  \n4"
+    },
+    {
+      "prompt": "My payment failed. What should I do?",
+      "base": "<think>\nOkay, the user mentioned their payment failed. I need to provide helpful information. First, I should check if they have a receipt or a tracking number. If they don't, maybe they can contact customer support. I should also remind them to contact support immediately. Let me make sure the response is clear and friendly.\n</think>\n\nYour payment may have been processed, but if there are issues, please contact our customer support for assistance. We'll be here to help!",
+      "finetuned": "<think>\nOkay, the user mentioned their payment failed. I need to provide clear, helpful steps. First, check their account details. If they're on a mobile app, confirm the payment was successful. If not, contact customer support. Also, mention to check their bank details. Keep it concise and polite, no passwords or OTPs. Make sure they know to contact support if there's a problem.\n</think>\n\nYour payment failed. Please check your account details. If the issue persists, contact customer support for assistance."
+    },
+    {
+      "prompt": "Can I exchange an item for another size?",
+      "base": "<think>\nOkay, the user is asking if they can exchange an item for another size. I need to check the store's policies. First, I should confirm if there's a standard exchange policy. Then, I should mention the process: contact customer service, provide the reason, and check the availability. Also, include the steps to contact them, like the phone number or website. Make sure the response is clear and helpful, keeping it polite and concise.\n</think>\n\nYes, we can exchange items for another size. Please contact our customer service, provide the reason, and we will assist you. Let me know the details, and we'll handle the exchange.",
+      "finetuned": "<think>\nOkay, the user is asking if they can exchange an item for another size. First, I need to check the store's policies. I remember that most e-commerce platforms have a \"size exchange\" option, but I should confirm if it's available. I should mention the process: contact customer service, provide the order number, and check the size. Also, I need to make sure the response is polite and not push for passwords. Let me make sure the answer is clear and concise.\n</think>\n\nYes, you can exchange an item for another size. Please contact our customer support, provide the order number, and we will assist you with the exchange."
+    }
+  ],
+  "llm_judge": [
+    {
+      "prompt": "Where is my order?",
+      "judgment": "{\n  \"correctness\": 2,\n  \"relevance\": 3,\n  \"helpfulness\": 2,\n  \"tone\": 5,\n  \"safety\": 5,\n  \"reason\": \"The response is polite and safe but lacks specific information about the order's status, tracking details, or any personalized assistance, making it only vaguely relevant and not particularly helpful or correct.\"\n}"
+    },
+    {
+      "prompt": "I received a damaged item. What are my options?",
+      "judgment": "{\n  \"correctness\": 5,\n  \"relevance\": 5,\n  \"helpfulness\": 4,\n  \"tone\": 5,\n  \"safety\": 5,\n  \"reason\": \"The response correctly identified the user's issue and listed appropriate options (return, exchange, refund). It stayed on topic and was polite. It could have been slightly more helpful by offering brief next‑step guidance without first asking for a product number, hence a 4 for helpfulness.\"\n}"
+    },
+    {
+      "prompt": "My refund has not arrived yet. What information do you need?",
+      "judgment": "{\n  \"correctness\": 5,\n  \"relevance\": 5,\n  \"helpfulness\": 4,\n  \"tone\": 5,\n  \"safety\": 5,\n  \"reason\": \"The response correctly asks for pertinent details to locate the refund and is directly relevant to the user's request. It is polite and safe. It could be slightly more helpful by also requesting an order or transaction ID, but overall it adequately addresses the query.\"\n}"
+    },
+    {
+      "prompt": "My payment failed. What should I do?",
+      "judgment": "{\n  \"correctness\": 5,\n  \"relevance\": 5,\n  \"helpfulness\": 4,\n  \"tone\": 5,\n  \"safety\": 5,\n  \"reason\": \"The response accurately addresses the user's issue and stays on topic with polite language. It could be more helpful by offering additional troubleshooting steps, but it is safe and correct.\"\n}"
+    },
+    {
+      "prompt": "Can I exchange an item for another size?",
+      "judgment": "{\n  \"correctness\": 4,\n  \"relevance\": 5,\n  \"helpfulness\": 4,\n  \"tone\": 5,\n  \"safety\": 5,\n  \"reason\": \"The response correctly addresses the user's query and gives a clear next step, staying on topic and polite. It could be more detailed about policies, but it is safe and appropriate.\"\n}"
+    }
+  ]
+}
